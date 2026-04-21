@@ -1,130 +1,121 @@
-# Trader Performance vs Market Sentiment
-
-## Overview
-This project analyzes how Bitcoin market sentiment (Fear/Greed Index) influences trader behavior and performance on Hyperliquid. The goal is to uncover patterns that can inform better trading strategies.
-
----
-
-## Datasets
-1. **Bitcoin Market Sentiment Dataset**
-   - Columns: timestamp, value, classification, date
-   - Labels: Extreme Fear, Fear, Neutral, Greed, Extreme Greed
-
-2. **Hyperliquid Trader Dataset**
-   - Contains trade-level data such as account, execution price, size, side, timestamp, and PnL
-
----
-
-## Methodology
-- Cleaned datasets (handled nulls, duplicates, normalized columns)
-- Converted timestamps and aligned both datasets at a **daily level**
-- Merged datasets on date
-- Computed key metrics:
-  - Daily PnL
-  - Win rate
-  - Trade frequency
-  - Average trade size
-  - Long/Short ratio
-- Performed segmentation:
-  - High vs Low trade size
-  - Frequent vs Infrequent traders
-  - Winners vs Losers
-
----
-
-## Key Insights
-- **Highest profitability during Extreme Greed**  
-  Traders achieved the highest PnL (~67.9) and win rate (~46%) in strong bullish sentiment.
-
-- **Risk-taking peaks during Fear but is inefficient**  
-  Traders used the largest trade sizes (~7816 USD) during Fear but did not achieve the highest returns.
-
-- **Overtrading reduces profitability**  
-  Low-frequency traders outperformed high-frequency traders (95 vs 42 PnL).
-
-- **Position sizing is critical**  
-  High trade size segment generated significantly higher returns (92 vs 4 PnL).
-
----
-
-## Strategy Recommendations
-- **Leverage bullish momentum**  
-  Increase participation during Extreme Greed using trend-following strategies.
-
-- **Control risk during Fear**  
-  Reduce position sizes to avoid inefficient capital allocation.
-
-- **Avoid overtrading**  
-  Focus on fewer, high-quality trades rather than frequent execution.
-
----
-
-## How to Run
 # 📊 Trader Performance vs Market Sentiment
 
-## Overview
-This project analyzes how Bitcoin market sentiment (Fear/Greed Index) influences trader behavior and performance on Hyperliquid. The goal is to uncover patterns that can inform better trading strategies.
+## 🚀 Key Results
+- **Extreme Greed → highest profitability** (PnL ≈ 67.9, Win Rate ≈ 46%)
+- **Fear → highest risk-taking** (avg trade size ≈ 7816 USD) but not highest returns
+- **Low-frequency traders outperform high-frequency traders (~95 vs 42 PnL)**
+- **Position size strongly impacts returns (~92 vs 4 PnL)**
 
 ---
 
 ## 📁 Datasets
-1. **Bitcoin Market Sentiment Dataset**
+1. **Bitcoin Market Sentiment (Fear/Greed Index)**
    - Columns: timestamp, value, classification, date
-   - Labels: Extreme Fear, Fear, Neutral, Greed, Extreme Greed
 
-2. **Hyperliquid Trader Dataset**
-   - Contains trade-level data such as account, execution price, size, side, timestamp, and PnL
-
----
-
-## ⚙️ Methodology
-- Cleaned datasets (handled nulls, duplicates, normalized columns)
-- Converted timestamps and aligned both datasets at a **daily level**
-- Merged datasets on date
-- Computed key metrics:
-  - Daily PnL
-  - Win rate
-  - Trade frequency
-  - Average trade size
-  - Long/Short ratio
-- Performed segmentation:
-  - High vs Low trade size
-  - Frequent vs Infrequent traders
-  - Winners vs Losers
+2. **Hyperliquid Trader Data**
+   - Trade-level data: account, execution price, size, side, timestamp, closed PnL, etc.
 
 ---
 
-## 📊 Key Insights
-- **Highest profitability during Extreme Greed**  
-  Traders achieved the highest PnL (~67.9) and win rate (~46%) in strong bullish sentiment.
+## ⚙️ Data Preparation
+- Sentiment dataset: **2644 rows, 4 columns**
+- Trades dataset: **211,224 rows, 16 columns**
+- Missing values: **None**
+- Duplicates: **None**
 
-- **Risk-taking peaks during Fear but is inefficient**  
-  Traders used the largest trade sizes (~7816 USD) during Fear but did not achieve the highest returns.
+### Processing Steps
+- Normalized column names
+- Converted timestamps (IST) with `dayfirst=True`
+- Aligned both datasets at **daily level**
+- Filtered overlapping date range
+- Merged on date
 
-- **Overtrading reduces profitability**  
-  Low-frequency traders outperformed high-frequency traders (95 vs 42 PnL).
+> Note: Leverage data was unavailable; **trade size (USD)** is used as a proxy for risk.
 
-- **Position sizing is critical**  
-  High trade size segment generated significantly higher returns (92 vs 4 PnL).
+---
+
+## 📊 Metrics Computed
+- Daily PnL per trader
+- Win rate
+- Average trade size
+- Trades per day
+- Long/Short ratio
+
+---
+
+## ❓ Answers to Key Questions
+
+### Does performance differ across sentiment?
+✔ Yes  
+- Extreme Greed → highest PnL and win rate  
+- Fear → high activity but lower efficiency  
+
+### Do traders change behavior?
+✔ Yes  
+- Larger trade sizes during Fear  
+- More trades during Fear  
+- Slight short bias during Greed  
+
+---
+
+## 📉 Drawdown
+- Maximum drawdown: **-419,020**
+- Indicates periods of significant downside risk
+
+---
+
+## 🔍 Segment Analysis
+
+### 1. Trade Size
+- High size → **92 PnL**
+- Low size → **4 PnL**
+
+### 2. Trading Frequency
+- Low-frequency → **95 PnL**
+- High-frequency → **42 PnL**
+
+### 3. Profitability
+- Winners → positive average PnL
+- Losers → negative PnL
+
+---
+
+## 📈 Key Insights
+
+1. **Profitability peaks in bullish sentiment**
+   - Extreme Greed yields highest PnL and win rate
+
+2. **Risk-taking is inefficient during Fear**
+   - Largest positions but not highest returns
+
+3. **Overtrading reduces profitability**
+   - Low-frequency traders outperform significantly
+
+4. **Capital allocation matters more than frequency**
+   - Trade size has a stronger impact on returns
 
 ---
 
 ## 🎯 Strategy Recommendations
-- **Leverage bullish momentum**  
-  Increase participation during Extreme Greed using trend-following strategies.
 
-- **Control risk during Fear**  
-  Reduce position sizes to avoid inefficient capital allocation.
+1. **Leverage bullish momentum**
+   - Increase exposure during Extreme Greed
 
-- **Avoid overtrading**  
-  Focus on fewer, high-quality trades rather than frequent execution.
+2. **Control risk during Fear**
+   - Reduce position size by ~25–30%
+
+3. **Avoid overtrading**
+   - Focus on fewer, high-quality trades
 
 ---
 
 ## ▶️ How to Run
-1. Install dependencies:
+
+### Requirements
+- pandas
+- matplotlib
+- seaborn
+
+### Run
 ```bash
-pip install pandas matplotlib seaborn
-1. Install dependencies:
-```bash
-pip install pandas matplotlib seaborn
+python a1.py

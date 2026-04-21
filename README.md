@@ -119,3 +119,8 @@
 ### Run
 ```bash
 python a1.py
+
+<img width="920" height="699" alt="image" src="https://github.com/user-attachments/assets/58d97a93-bf19-4108-81ef-dc835fe55081" />
+<img width="906" height="706" alt="image" src="https://github.com/user-attachments/assets/7c873f54-d234-4d7e-9923-4bfde3bdd297" />
+<img width="911" height="703" alt="image" src="https://github.com/user-attachments/assets/f85c9cd4-a568-4ec8-8dc8-7b7210c32956" />
+<img width="908" height="699" alt="image" src="https://github.com/user-attachments/assets/ecc04d1e-2b66-470e-a0db-83f5ba88c937" />
